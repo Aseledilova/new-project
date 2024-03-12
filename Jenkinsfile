@@ -9,7 +9,7 @@ node {
 
     stage('Build image') {
   
-       app = docker.build("Aselina/class")
+       app = docker.build("aselina/class")
     }
 
     stage('Test image') {
