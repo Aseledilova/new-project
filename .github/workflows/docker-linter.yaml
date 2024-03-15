@@ -1,12 +1,12 @@
-name: Dockerfile-linter
+name: Docker linter
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: #to manually trigger the workflow
 
 jobs:
   hadolint:
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v3
       - uses: hadolint/hadolint-action@v3.1.0
