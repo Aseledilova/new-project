@@ -10,10 +10,10 @@ on:
   workflow_dispatch:
 
 env:
-  aws-access-key: ${{AWS_ACCESS_KEY_ID}}
-  aws-secret_key: ${{AWS_SECRET_ACCESS_KEY_ID}}
+  aws-access-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  aws-secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
   region: us-east-2
-  
+
 jobs:
   terraform:
     name: Terraform Apply
