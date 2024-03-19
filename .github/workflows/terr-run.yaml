@@ -11,33 +11,36 @@ on:
 
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
-  AWS_S3_BUCKET: terraform-s3asel
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
   AWS_REGION: us-east-2
+
 
 jobs:
   terraform:
-    name: Terraform Apply
     runs-on: ubuntu-latest
-
+    
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Set up Terraform
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
 
-    - name: Format Terraform 
+    - name: Terraform fmt
       run: terraform fmt -check
+      continue-on-error: false
 
-    - name: Initialize Terraform
-      run: terraform init -backend-config="bucket=terraform-s3asel"
+    - name: Terraform Init
+      run: terraform init
 
-    - name: Plan Terraform
+    - name: Terraform Validate
+      run: terraform validate
+      continue-on-error: false
+
+    - name: Terraform Plan
       run: terraform plan
-
-    - name: Apply Terraform
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main' # Only apply on main branch push
+      
+    - name: Terraform Apply
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: terraform apply -auto-approve
-
-    # You may want to include more steps such as testing, linting, etc. before applying Terraform changes.
