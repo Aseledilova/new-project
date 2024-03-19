@@ -3,13 +3,13 @@ terraform {
     bucket = "terraform-s3asel"
     key    = "dev.tfstate"
     region = "us-east-2"
-    shared_credentials_file = "~/.aws/credentials"
+    # shared_credentials_file = "~/.aws/credentials"
   }
 }
 
 provider "aws" {
   region = "us-east-2"
-  shared_credentials_file = "~/.aws/credentials"
+  # shared_credentials_file = "~/.aws/credentials"
 }
 
 resource "aws_ecr_repository" "my_ecr_repo" {
