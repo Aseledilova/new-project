@@ -33,7 +33,7 @@ jobs:
       run: terraform fmt -check
 
     - name: Initialize Terraform
-      run: terraform init -backend-config="bucket=$AWS_S3_BUCKET"
+      run: terraform init -backend-config="bucket=terraform-s3asel"
 
     # - name: Plan Terraform
     #   run: terraform plan
