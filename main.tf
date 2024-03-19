@@ -1,14 +1,14 @@
 terraform {
   backend "s3" {
-    bucket                  = "terraform-s3asel"
-    key                     = "dev.tfstate"
-    region                  = "us-east-2"
+    bucket = "terraform-s3asel"
+    key    = "dev.tfstate"
+    region = "us-east-2"
     # shared_credentials_file = "~/.aws/credentials"
   }
 }
 
 provider "aws" {
-  region                  = "us-east-1"
+  region = "us-east-1"
   # shared_credentials_file = "~/.aws/credentials"
 }
 
